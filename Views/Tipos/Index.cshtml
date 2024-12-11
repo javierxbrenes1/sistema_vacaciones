@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "Tipos de Empleados";
+}
+<div class="text-center">
+    <h1 class="display-4">Tipos de empleados o funcionarios</h1>
+    <div class="container mb-4 align-self-start">
+        @Html.ActionLink("Agregar un nuevo tipo","Nuevo", "Tipos", null, new { @class = "btn btn-dark" })
+    </div>
+    <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Descripción</th>
+                    <th>Número de Días</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tipo in @ViewBag.tipos)
+                {
+                    <tr>
+                        <td>@tipo.Id</td>
+                        <td>@tipo.Descripcion</td>
+                        <td>@tipo.NumeroDias</td>
+                        <td>
+                            @Html.ActionLink("Editar","Editar", "Tipos", new {id = @tipo.Id}, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Eliminar","Eliminar", "Tipos", new {id = @tipo.Id}, new { @class = "btn btn-danger", @onclick="confirmarEliminacion(event, 'Seguro que deseas eliminar este tipo?');" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>

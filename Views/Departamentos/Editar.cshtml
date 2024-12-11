@@ -1,0 +1,19 @@
+@model Departamentos
+
+@{
+    ViewData["Title"] = "Actualizar Departamentos";
+}
+
+ <div class="container mt-4">
+        <h2>Actualizar Departamento</h2>
+        <form asp-action="Editar" method="post" class="mt-4">
+            <div class="mb-3">
+                <label for="Nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="Nombre" name="Nombre" value="@Model.Nombre" required />
+            </div>
+
+            <input id="Id" name="Id" value="@Model.Id" hidden="true" />
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
