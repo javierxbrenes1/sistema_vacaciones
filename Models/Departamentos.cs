@@ -10,6 +10,6 @@ namespace sistema_vacaciones.Models
         public int? Id { get; set; }
         public string Nombre { get; set; }
 
-        public ICollection<Funcionarios> Funcionarios { get; }
+        public ICollection<Funcionarios>? Funcionarios { get; }
     }
 }

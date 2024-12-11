@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using sistema_vacaciones.Models;
 using sistema_vacaciones.Repository;
+using sistema_vacaciones.DTOs;
 
 namespace sistema_vacaciones.Controllers;
 
@@ -39,22 +40,22 @@ public class DepartamentosController: Controller {
     }
 
     [HttpPost]
-    public IActionResult Editar(Departamentos dept)
+    public IActionResult Editar(DepartamentosDTO dept)
     {
         if (ModelState.IsValid)
         {
-            this._repo.Actualizar(dept);
+            this._repo.Actualizar(new Departamentos { Id = dept.Id, Nombre = dept.Nombre });
             return RedirectToAction("Index");
         }
         return View(dept);
     }
 
     [HttpPost]
-    public IActionResult Nuevo(Departamentos dept)
+    public IActionResult Nuevo(DepartamentosDTO dept)
     {
         if (ModelState.IsValid)
         {
-            this._repo.Agregar(dept);
+            this._repo.Agregar(new Departamentos { Nombre = dept.Nombre });
             return RedirectToAction("Index");
         }
         return View(dept);

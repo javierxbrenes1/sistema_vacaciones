@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using sistema_vacaciones.Models;
 using sistema_vacaciones.Repository;
+using sistema_vacaciones.DTOs;
 
 namespace sistema_vacaciones.Controllers;
 
@@ -40,22 +41,22 @@ public class TiposController: Controller {
     }
 
     [HttpPost]
-    public IActionResult Editar(TipoEmpleados tipo)
+    public IActionResult Editar(TipoEmpleadosDTO tipo)
     {
         if (ModelState.IsValid)
         {
-            this._repo.Actualizar(tipo);
+            this._repo.Actualizar(new TipoEmpleados { Id = tipo.Id, Descripcion = tipo.Descripcion, NumeroDias = tipo.NumeroDias });
             return RedirectToAction("Index");
         }
         return View(tipo);
     }
 
     [HttpPost]
-    public IActionResult Nuevo(TipoEmpleados tipo)
+    public IActionResult Nuevo(TipoEmpleadosDTO tipo)
     {
         if (ModelState.IsValid)
         {
-            this._repo.Agregar(tipo);
+            this._repo.Agregar(new TipoEmpleados { Descripcion = tipo.Descripcion, NumeroDias = tipo.NumeroDias });
             return RedirectToAction("Index");
         }
         return View(tipo);

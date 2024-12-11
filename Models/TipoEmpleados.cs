@@ -11,6 +11,6 @@ namespace sistema_vacaciones.Models
         public string Descripcion { get; set; }
         public float NumeroDias {get; set;}
 
-        public ICollection<Funcionarios> Funcionarios { get; }
+        public ICollection<Funcionarios>? Funcionarios { get; }
     }
 }
